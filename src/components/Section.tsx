@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 export default function Section({
   id,
@@ -7,11 +8,18 @@ export default function Section({
   intro,
   children,
   className = "",
+}: {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  children: ReactNode;
+  className?: string;
 }) {
   return (
     <motion.section
       id={id}
-      className={`site-section ${className}`.trim()}
+      className={`site-section ${className}`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
