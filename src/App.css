@@ -696,7 +696,7 @@ textarea {
 .closing-section-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;   
+  justify-content: space-between;
 }
 .closing-copy {
   max-width: 600px;
@@ -728,10 +728,32 @@ textarea {
   line-height: 1.7;
 }
 .site-footer {
+  position: relative; /* Essential to anchor the blurred background */
+  overflow: hidden; /* Prevents the blurred edges from leaking out */
   padding: 4rem 0;
   border-top: 1px solid var(--line);
   text-align: center;
   background: var(--terracotta);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/src/assets/stonebench.png");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.site-footer > * {
+  position: relative;
+  z-index: 2;
 }
 .footer-inner h3 {
   margin: 0;
