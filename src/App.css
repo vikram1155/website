@@ -571,12 +571,26 @@ textarea {
 .random-card {
   padding: 2rem;
 }
+.random-facts-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.random-facts-grid {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+.random-facts-grid .random-card {
+  flex: 1 1 0;
+  min-width: 0;
+}
 .random-card p {
-  min-height: 100px;
-  margin: 0 0 1.5rem;
+  /* min-height: 100px; */
+  /* margin: 0 0 1rem; */
   font-family: var(--serif);
-  font-size: clamp(1.7rem, 4vw, 3rem);
-  line-height: 1.08;
+  font-size: clamp(1rem, 4vw, 1.5rem);
 }
 .moi-layout {
   display: grid;
@@ -678,6 +692,11 @@ textarea {
 }
 .closing-section {
   background: linear-gradient(135deg, #ead8cb, #f7f0e8);
+}
+.closing-section-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
 }
 .closing-copy {
   max-width: 600px;
@@ -874,6 +893,9 @@ textarea {
   .menu-button {
     display: grid;
     place-items: center;
+  }
+  .random-facts-grid {
+    flex-direction: column;
   }
   .message-form {
     display: grid;

@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="site-footer" id="contact">
       <section className="work-section">
         <div className="section-container">
-          <p style={{ color: "var(--paper)" }}>
+          <div style={{ color: "var(--paper)" }}>
             Proudly overdone with a comically excessive amount of time and
             energy that literally nobody asked for 🙃 <br></br>
             <h2 style={{ marginTop: "0.5rem" }}>
@@ -13,8 +13,7 @@ export default function Footer() {
             </h2>
             Hours spent and concepts rejected designing this: let's not talk
             about it 🙃
-            <br></br>See you at our wedding folks 🙌
-          </p>
+          </div>
           <br></br>
           <h4 style={{ color: "var(--paper)" }}>{wedding.couple.dates}</h4>
           <h4 style={{ color: "var(--paper)" }}>{wedding.couple.location}</h4>

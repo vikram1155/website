@@ -2,6 +2,18 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { wedding } from "../config/wedding";
 import PlaceholderImage from "./PlaceholderImage";
+
+function storyHtml(text: string) {
+  const escaped = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/&lt;(\/?)(b|i)&gt;/gi, "<$1$2>")
+    .replace(/\r?\n/g, "<br />");
+
+  return { __html: escaped };
+}
+
 export default function Timeline() {
   return (
     <>
@@ -24,7 +36,8 @@ export default function Timeline() {
             <div className="timeline-copy">
               <span>{item.date}</span>
               <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              {/* The formatter preserves newlines and permits only local b/i tags. */}
+              <p dangerouslySetInnerHTML={storyHtml(item.text)} />
             </div>
           </motion.article>
         ))}

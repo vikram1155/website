@@ -9,9 +9,9 @@ export default function MoiSection() {
   const start = (amount: string) => {
     setSelected(amount);
     setStep(1);
-    window.setTimeout(() => setStep(2), 700);
-    window.setTimeout(() => setStep(3), 1400);
-    window.setTimeout(() => setStep(4), 2100);
+    window.setTimeout(() => setStep(2), 1000);
+    window.setTimeout(() => setStep(3), 3000);
+    window.setTimeout(() => setStep(4), 5000);
   };
   return (
     <Section
@@ -32,7 +32,10 @@ export default function MoiSection() {
           GPAY | UPI
         </div>
         <div>
-          <p>We know you guys are choosing 2000/- and nothing else 🙂</p>
+          <p>
+            We know you guys are choosing 2000/- and nothing else 🙂 <br></br>
+            Right? Right??
+          </p>
           <div className="amount-grid">
             {wedding.moi.amounts.map((amount) => (
               <button

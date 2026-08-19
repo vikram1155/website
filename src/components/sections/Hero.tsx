@@ -18,8 +18,27 @@ export default function Hero() {
           <h1>
             {wedding.couple.groom} <span>&</span> {wedding.couple.bride}
           </h1>
-          <p className="hero-date">{wedding.couple.dates}</p>
-          <p className="hero-location">
+          <p
+            className="eyebrow"
+            style={{
+              marginTop: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.35rem",
+            }}
+          >
+            {wedding.couple.dates}
+          </p>
+          <p
+            className="eyebrow"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.35rem",
+            }}
+          >
             <MapPin size={16} /> {wedding.couple.location}
           </p>
           <p className="hero-note">{wedding.hero.note}</p>
