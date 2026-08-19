@@ -809,7 +809,8 @@ textarea {
   z-index: 100;
   display: grid;
   place-items: center;
-  background: var(--paper);
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9f2eb 0%, var(--paper-deep) 100%);
 }
 .skip-intro {
   position: absolute;
@@ -821,13 +822,127 @@ textarea {
   background: transparent;
   color: var(--muted);
   font-size: 0.75rem;
+  cursor: pointer;
 }
 .intro-content {
   display: grid;
   justify-items: center;
-  gap: 1.4rem;
+  gap: 1.65rem;
+  width: 100%;
   text-align: center;
 }
+.intro-composition {
+  display: grid;
+  grid-template-columns:
+    max-content
+    max-content
+    max-content;
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  width: max-content;
+  max-width: 95vw;
+  min-height: clamp(5rem, 16vw, 10rem);
+  color: var(--ink);
+  font-family: var(--serif);
+  text-shadow:
+    0 0 5px rgba(32, 27, 25, 0.22),
+    0 0 18px rgba(32, 27, 25, 0.14),
+    0 0 42px rgba(32, 27, 25, 0.08);
+}
+.intro-person {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: max-content;
+  min-width: clamp(5rem, 14vw, 9rem);
+  height: clamp(5rem, 14vw, 9rem);
+}
+.intro-name {
+  grid-area: 1 / 1;
+  display: block;
+  font-size: clamp(4rem, 14vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+  white-space: nowrap;
+}
+.intro-initial {
+  position: relative;
+  text-align: right;
+}
+.intro-full-name {
+  position: relative;
+  text-align: center;
+}
+.intro-heart {
+  display: block;
+  flex-shrink: 0;
+  font-size: clamp(2.7rem, 7.5vw, 4.8rem);
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(255, 83, 66, 0.9))
+    drop-shadow(0 0 24px rgba(255, 83, 66, 0.5));
+}
+.intro-tagline {
+  display: flex;
+  align-items: center;
+  min-height: 1.6rem;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(1rem, 3vw, 1.45rem);
+  letter-spacing: 0.01em;
+}
+
+.intro-tagline span {
+  display: inline-block;
+}
+
+.intro-cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1.1em;
+  margin-left: 0.3rem;
+  background: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .intro-composition {
+    column-gap: 1.25rem;
+    max-width: 92vw;
+  }
+
+  .intro-name {
+    font-size: clamp(2.4rem, 10vw, 4rem);
+  }
+
+  .intro-person {
+    min-width: clamp(4rem, 18vw, 6rem);
+  }
+
+  .intro-heart {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .intro-composition {
+    column-gap: 0.8rem;
+  }
+  .intro-name {
+    font-size: clamp(1.6rem, 10vw, 3rem);
+  }
+  .intro-heart {
+    font-size: 2rem;
+  }
+}
+
+.intro-lines {
+  width: 100px;
+  height: 1px;
+  background: var(--terracotta);
+  transform-origin: center;
+}
+
 .monogram,
 .intro-names {
   display: flex;
@@ -835,31 +950,29 @@ textarea {
   gap: 0.55rem;
   font-family: var(--serif);
 }
+
 .monogram {
   font-size: clamp(4rem, 14vw, 9rem);
   line-height: 0.8;
   letter-spacing: -0.08em;
 }
+
 .monogram i,
 .intro-names i {
   color: var(--terracotta);
   font-size: 0.5em;
   font-style: normal;
 }
+
 .intro-names {
   font-size: clamp(1.5rem, 5vw, 3rem);
   letter-spacing: 0.08em;
 }
+
 .intro-content p {
   margin: 0;
-  color: var(--muted);
 }
-.intro-lines {
-  width: 100px;
-  height: 1px;
-  background: var(--terracotta);
-  transform-origin: center;
-}
+
 @media (min-width: 700px) {
   .hero-inner {
     grid-template-columns: 1fr;

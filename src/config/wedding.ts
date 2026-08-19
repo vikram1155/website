@@ -9,7 +9,7 @@ export const wedding = {
   },
   intro: {
     tagline: "Yep, we are getting married 😊",
-    durationMs: 5000,
+    durationMs: 8000,
   },
   hero: {
     image: "/images/hero.jpg",
@@ -102,6 +102,7 @@ export const wedding = {
     "Vikram and Monica have been texting/talking non-stop for 9 years straight. Literally zero days off 👀",
     "We thought ourselves as OK Kanmani Adi and Tara, turns out we are Vadivelu and Kovai sarala irl 💣",
     "We tried the FLAMES calculator, guess what we got for our names? 😁",
+    "Monica gets angry, Vikram consoles her. Vikram gets angry, Vikram consoles her. Perfectly balanced, as all things should be. 😎",
   ],
   photoSharing: { telegramUrl: "TELEGRAM_GROUP_URL_HERE" },
   moi: {
