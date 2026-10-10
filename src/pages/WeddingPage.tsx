@@ -34,6 +34,8 @@ function getInviteeName(pathname: string, search: string) {
     .replace(/\s+/g, " ")
     .slice(0, 80);
 
+  if (!name || name.toLowerCase() === "undefined") return "";
+
   return name
     .split(/([\s'-]+)/)
     .map((part) => {

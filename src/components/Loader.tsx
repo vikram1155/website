@@ -21,8 +21,11 @@ export default function Loader({
   onComplete: () => void;
   onSkip?: () => void;
 }) {
-  const displayName = guestName?.trim() || "there";
-  const greeting = `Hello, ${displayName} 👋`;
+  const name = guestName?.trim();
+  const displayName = name && name.toLowerCase() !== "undefined" ? name : "";
+  const greeting = displayName
+    ? `Hello, ${displayName} 👋`
+    : "Hello there 👋";
   const greetingCharacters = Array.from(greeting);
 
   useEffect(() => {
