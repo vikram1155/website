@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Loader from "../components/Loader";
 import Hero from "../components/sections/Hero";
 import EventDetails from "../components/sections/EventDetails";
 import CountdownSection from "../components/sections/CountdownSection";
 import StorySection from "../components/sections/StorySection";
+import PhotoBoothSection from "../components/sections/PhotoBoothSection";
 import MessagesSection from "../components/sections/MessagesSection";
 import MissionsSection from "../components/sections/MissionsSection";
 import RandomUsSection from "../components/sections/RandomUsSection";
@@ -13,16 +15,40 @@ import MoiSection from "../components/sections/MoiSection";
 import ClosingSection from "../components/sections/ClosingSection";
 import Footer from "../components/Footer";
 
-const INTRO_SEEN_KEY = "vm-wedding-intro-seen";
+function getInviteeName(pathname: string, search: string) {
+  const queryName = new URLSearchParams(search).get("guest");
+  const pathValue = pathname.match(/^\/guest=(.*)$/i)?.[1];
+  let pathName = pathValue ?? null;
+
+  if (pathName !== null) {
+    try {
+      pathName = decodeURIComponent(pathName.replace(/\+/g, " "));
+    } catch {
+      pathName = pathName.replace(/\+/g, " ");
+    }
+  }
+
+  const name = (queryName || pathName || "")
+    .replace(/[\u0000-\u001f\u007f]/g, "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .slice(0, 80);
+
+  return name
+    .split(/([\s'-]+)/)
+    .map((part) => {
+      if (/^[\s'-]+$/.test(part)) return part;
+      const [firstCharacter, ...rest] = Array.from(part);
+      return `${firstCharacter?.toLocaleUpperCase()}${rest.join("").toLocaleLowerCase()}`;
+    })
+    .join("");
+}
 
 export default function WeddingPage() {
-  const [intro, setIntro] = useState(() => {
-    try {
-      return localStorage.getItem(INTRO_SEEN_KEY) !== "true";
-    } catch {
-      return true;
-    }
-  });
+  const { pathname, search } = useLocation();
+  const inviteeName = getInviteeName(pathname, search);
+  const [intro, setIntro] = useState(true);
+
   useEffect(() => {
     if (!intro) return;
     const old = document.body.style.overflow;
@@ -32,22 +58,18 @@ export default function WeddingPage() {
     };
   }, [intro]);
 
-  const completeIntro = () => {
-    localStorage.setItem(INTRO_SEEN_KEY, "true");
-    setIntro(false);
-    document.body.style.overflow = "";
-  };
-
-  const skipIntro = () => {
-    localStorage.setItem(INTRO_SEEN_KEY, "true");
-    document.body.style.overflow = "";
-    setIntro(false);
-  };
+  const closeIntro = () => setIntro(false);
 
   return (
     <>
       <AnimatePresence>
-        {intro && <Loader onComplete={completeIntro} onSkip={skipIntro} />}
+        {intro && (
+          <Loader
+            guestName={inviteeName}
+            onComplete={closeIntro}
+            onSkip={closeIntro}
+          />
+        )}
       </AnimatePresence>
       {!intro && (
         <motion.div
@@ -62,6 +84,7 @@ export default function WeddingPage() {
             <EventDetails />
             <CountdownSection />
             <StorySection />
+            <PhotoBoothSection />
             <MessagesSection />
             <MissionsSection />
             <RandomUsSection />

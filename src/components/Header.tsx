@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { wedding } from "../config/wedding";
+import logo from "../assets/logo.png";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +23,10 @@ export default function Header() {
   return (
     <header className={`sticky-header ${scrolled ? "is-scrolled" : ""}`}>
       <a className="logo-mark" href="#top" aria-label="Back to top">
-        {wedding.couple.monogram}
+        <img
+          src={logo}
+          alt={`${wedding.couple.groom} and ${wedding.couple.bride}`}
+        />
       </a>
       <nav className={`header-nav ${open ? "is-open" : ""}`}>
         {links.map(([href, label]) => (

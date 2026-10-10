@@ -4,34 +4,39 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Section from "../Section";
 import MessageCard from "../MessageCard";
 import Modal from "../Modal";
-import { wedding } from "../../config/wedding";
-import type { GuestMessage } from "../../config/wedding";
-const STORAGE_KEY = "vm-wedding-messages";
-function readMessages(): GuestMessage[] {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved) as GuestMessage[];
-    const seed = wedding.messages.map((item) => ({
-      ...item,
-      createdAt: new Date().toISOString(),
-    }));
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
-    return seed;
-  } catch {
-    return wedding.messages.map((item) => ({
-      ...item,
-      createdAt: new Date().toISOString(),
-    }));
-  }
-}
+import {
+  getGuestMessages,
+  isGuestbookConfigured,
+  postGuestMessage,
+} from "../../config/guestbook";
+import type { GuestMessage } from "../../config/guestbook";
 export default function MessagesSection() {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [form, setForm] = useState({ name: "", message: "", anonymous: false });
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [selectedMessage, setSelectedMessage] = useState<GuestMessage | null>(
     null,
   );
   const trayRef = useRef<HTMLDivElement>(null);
-  useEffect(() => setMessages(readMessages()), []);
+  useEffect(() => {
+    let active = true;
+    getGuestMessages()
+      .then((loadedMessages) => {
+        if (active) setMessages(loadedMessages);
+      })
+      .catch(() => {
+        if (active) setError("Messages could not be loaded. Please try again.");
+      })
+      .finally(() => {
+        if (active) setIsLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const tray = trayRef.current;
@@ -51,31 +56,32 @@ export default function MessagesSection() {
     trayRef.current?.scrollBy({ left: direction * 290, behavior: "smooth" });
   };
 
-  const post = (event: React.FormEvent) => {
+  const post = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!form.message.trim()) return;
-    const next = [
-      {
-        name: form.anonymous ? "Anonymous" : form.name.trim() || "Guest",
-        message: form.message.trim(),
-        createdAt: new Date().toISOString(),
-      },
-      ...messages,
-    ];
-    setMessages(next);
+    const message = form.message.trim();
+    if (!message || isSubmitting) return;
+
+    setError("");
+    setIsSubmitting(true);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      const posted = await postGuestMessage(
+        form.anonymous ? "Anonymous" : form.name.trim() || "Guest",
+        message,
+      );
+      setMessages((current) => [posted, ...current]);
+      setForm({ name: "", message: "", anonymous: false });
     } catch {
-      /* Storage can be unavailable in private browsing. */
+      setError("Your message could not be posted. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-    setForm({ name: "", message: "", anonymous: false });
   };
   return (
     <Section
       id="messages"
       eyebrow="Guestbook"
       title="Leave Us Something Valuable!"
-      intro="A wish, a roast, a core memory, terrible advice, or a story about how we all met! This means alot to us and try not to post anonymously 👀 "
+      intro="A wish, a roast, a core memory, terrible advice, or a story about how we all met! Btw, this gets posted, kanda menika post panirathinga frends🙂. This means a lot to us and try not to post anonymously 👀 "
     >
       <div className="messages-layout">
         <form className="message-form" onSubmit={post}>
@@ -106,9 +112,20 @@ export default function MessagesSection() {
             />{" "}
             Post Anonymously
           </label>
-          <button className="button button-dark" type="submit">
-            Post Message
+          <button
+            className="button button-dark"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Posting..." : "Post Message"}
           </button>
+          {error && <p role="alert">{error}</p>}
+          {!isGuestbookConfigured && (
+            <p className="section-note">
+              Guestbook database is not configured yet. Messages are saved on
+              this device for now.
+            </p>
+          )}
         </form>
         <div className="message-tray-wrap">
           <div
@@ -136,9 +153,13 @@ export default function MessagesSection() {
             </div>
           </div>
           <motion.div ref={trayRef} className="message-grid" layout>
-            {messages.map((item, index) => (
+            {isLoading && <p className="section-note">Loading messages...</p>}
+            {!isLoading && messages.length === 0 && (
+              <p className="section-note">Be the first to leave a message.</p>
+            )}
+            {messages.map((item) => (
               <MessageCard
-                key={`${item.createdAt}-${index}`}
+                key={item.id}
                 item={item}
                 onOpen={() => setSelectedMessage(item)}
               />

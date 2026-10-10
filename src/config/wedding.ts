@@ -24,7 +24,7 @@ export const wedding = {
   events: [
     {
       date: "12 December",
-      label: "Reception / Engagement 💍",
+      label: "Reception & Engagement 💍",
       time: "4:00 PM onwards",
     },
     { date: "13 December", label: "Wedding ✨", time: "7:00 AM onwards" },
@@ -82,7 +82,7 @@ export const wedding = {
     {
       date: "2026",
       title: "And Here We Are",
-      text: `Here we are! Strangers, to best friends, to partners. A total classic, isn't it?\n\nWas it a total cakewalk for us? <b>Definitely not 7️⃣</b>\nDid we fight at least twice a week for the past three years? <b>Absolutely, yes!</b> ❤️‍🔥\n\nBut behind every single silly argument was a choice to keep holding on to it. We both were just way too old-school and determined to ever leave each other, no matter what times we faced.\n<i>(Cringe uh nga? Cringe of the year award eh kudukalam nga! 🫠)</i>\n\n<i>And yep! Thats all folks!</i>`,
+      text: `Here we are! Strangers, to best friends, to partners. A total classic, isn't it?\n\nWas it a total cakewalk for us? <b>Definitely not 7️⃣</b>\nDid we fight at least twice a week for the past three years? <b>Absolutely, yes!</b> ❤️‍🔥\n\nBut behind every single silly argument was a choice to keep holding on to it. We both were just way too old-school and determined not to ever leave each other, no matter what times we faced.\n<i>(Cringe uh nga? Cringe of the year award eh kudukalam nga! 🫠)</i>\n\n<i>And yep! Thats all folks!</i>`,
       image: "/images/story-01.jpg",
     },
   ],
@@ -103,8 +103,9 @@ export const wedding = {
     "We thought ourselves as OK Kanmani Adi and Tara, turns out we are Vadivelu and Kovai sarala irl 💣",
     "We tried the FLAMES calculator, guess what we got for our names? 😁",
     "Monica gets angry, Vikram consoles her. Vikram gets angry, Vikram consoles her. Perfectly balanced, as all things should be. 😎",
+    "Is Monica fragile? Yes. A flower? Definetely not! More like a.. bomb. An always ticking Time bomb 💣",
   ],
-  photoSharing: { telegramUrl: "TELEGRAM_GROUP_URL_HERE" },
+  photoSharing: { telegramUrl: "https://t.me/+ByFHLw8W5rQwM2U1" },
   moi: {
     qrValue: "UPI_QR_VALUE_HERE",
     amounts: ["₹200", "₹500", "₹1,000", "₹2,000"],
@@ -139,5 +140,3 @@ export const wedding = {
     instagram: "INSTAGRAM_URL_HERE",
   },
 } as const;
-
-export type GuestMessage = { name: string; message: string; createdAt: string };

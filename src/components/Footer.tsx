@@ -6,8 +6,8 @@ export default function Footer() {
       <section className="work-section">
         <div className="section-container">
           <div style={{ color: "var(--paper)" }}>
-            Proudly overdone with a comically excessive amount of time and
-            energy that literally nobody asked for 🙃 <br></br>
+            Proudly overdone with a excessive amount of time and energy that
+            literally nobody asked for 🙃 <br></br>
             <h2 style={{ marginTop: "0.5rem" }}>
               <b>VikraM 🧡 Monica</b>
             </h2>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { GuestMessage } from "../config/wedding";
+import type { GuestMessage } from "../config/guestbook";
 export default function MessageCard({
   item,
   onOpen,

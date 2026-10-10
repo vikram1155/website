@@ -42,39 +42,6 @@ export default function Timeline() {
           </motion.article>
         ))}
       </div>
-      <br></br>
-      <br></br>
-      <div className="story-links">
-        <p
-          style={{
-            fontFamily: "var(--serif)",
-            fontSize: "1.7rem",
-            fontWeight: 400,
-          }}
-        >
-          Want to know more about us? We can definitely read your mind voice
-          saying no 🙃
-        </p>
-        <p
-          style={{
-            fontFamily: "var(--serif)",
-            fontSize: "1.2 rem",
-            fontWeight: 400,
-          }}
-        >
-          Still, for those who would like to know more, here's our POVs and
-          stories!
-        </p>
-        <br></br>
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <Link to="/his-pov">
-            <b>Vikram's Story →</b>
-          </Link>
-          <Link to="/her-pov">
-            <b>Monica's Story →</b>
-          </Link>
-        </div>
-      </div>
     </>
   );
 }
