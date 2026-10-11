@@ -23,9 +23,7 @@ export default function Loader({
 }) {
   const name = guestName?.trim();
   const displayName = name && name.toLowerCase() !== "undefined" ? name : "";
-  const greeting = displayName
-    ? `Hello, ${displayName} 👋`
-    : "Hello there 👋";
+  const greeting = displayName ? `Hello, ${displayName} 👋` : "Hello there 👋";
   const greetingCharacters = Array.from(greeting);
 
   useEffect(() => {
