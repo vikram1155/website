@@ -1,0 +1,3 @@
+[build.environment]
+  VITE_SUPABASE_URL = "https://liadiotnjjbfsuodkwlv.supabase.co"
+  VITE_SUPABASE_ANON_KEY = "sb_publishable_1xX4EfNPpY4RYQqv6NIGvw_4lORLgNf"
