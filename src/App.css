@@ -8,6 +8,7 @@
   --card: rgba(255, 252, 247, 0.78);
   --shadow: 0 18px 45px rgba(49, 34, 27, 0.08);
   --serif: Georgia, "Times New Roman", serif;
+  --section-space: clamp(4.5rem, 7vw, 6.5rem);
 }
 * {
   box-sizing: border-box;
@@ -58,7 +59,7 @@ button {
   margin: 0 auto;
 }
 .site-section {
-  padding: 6.5rem 0;
+  padding-block: var(--section-space);
 }
 .section-heading {
   max-width: 720px;
@@ -263,7 +264,6 @@ button {
   color: var(--muted);
 }
 .countdown-section {
-  background: var(--terracotta);
   color: var(--paper);
 }
 .countdown-section .eyebrow {
@@ -355,6 +355,14 @@ button {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+}
+.story-section .section-heading,
+.photobooth-section .section-heading {
+  margin-bottom: 0;
+}
+.story-section-intro,
+.photobooth-section-intro {
+  margin: 1rem 0 2.2rem;
 }
 .photobooth-carousel {
   width: min(720px, 100%);
@@ -525,6 +533,11 @@ textarea {
 .button-dark {
   background: var(--ink);
   color: var(--paper);
+}
+.button-danger {
+  gap: 0.5rem;
+  background: #a3312d;
+  color: white;
 }
 .button-light {
   border: 1px solid var(--line);
@@ -705,6 +718,12 @@ textarea {
   background: #fffaf4;
   border-radius: 14px;
 }
+.upi-qr-code {
+  display: block;
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
 .amount-grid {
   display: flex;
   flex-wrap: wrap;
@@ -792,23 +811,25 @@ textarea {
     transform: translateX(280%);
   }
 }
-.closing-section {
-  background: linear-gradient(135deg, #ead8cb, #f7f0e8);
-}
 .closing-section-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
 }
 .closing-copy {
+  display: grid;
+  gap: 1rem;
   max-width: 600px;
-  margin-top: 2rem;
   color: var(--muted);
   font-size: 1.1rem;
   line-height: 1.8;
 }
+.closing-copy p {
+  margin: 0;
+}
 .work-section {
-  padding: 4rem 0;
+  padding-block: var(--section-space);
   text-align: center;
 }
 .work-section h2 {
@@ -819,7 +840,7 @@ textarea {
   font-weight: 400;
 }
 .work-section h4 {
-  margin: 0 auto 0.7rem;
+  margin: 0;
   font-family: var(--serif);
   font-size: clamp(1.2rem, 4vw, 2rem);
   font-weight: 400;
@@ -832,10 +853,24 @@ textarea {
 .site-footer {
   position: relative; /* Essential to anchor the blurred background */
   overflow: hidden; /* Prevents the blurred edges from leaking out */
-  padding: 4rem 0;
+  padding-block: 0;
   border-top: 1px solid var(--line);
   text-align: center;
   background: var(--terracotta);
+}
+.footer-copy {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+}
+.footer-copy p,
+.footer-copy h2 {
+  margin: 0;
+}
+.footer-details {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
 }
 
 .site-footer::before {
@@ -1009,7 +1044,7 @@ textarea {
     grid-template-columns: 1fr;
   }
   .event-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .countdown-grid {
     grid-template-columns: repeat(4, 1fr);

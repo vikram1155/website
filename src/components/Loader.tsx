@@ -10,7 +10,7 @@ const WEDDING_TAGLINE_TYPING_MS = 3000;
 const OUTRO_HOLD_MS = 2000;
 const INTRO_DURATION_MS =
   WEDDING_TAGLINE_DELAY_MS + WEDDING_TAGLINE_TYPING_MS + OUTRO_HOLD_MS;
-const WEDDING_TAGLINE = "Yep, we're getting married!";
+const WEDDING_TAGLINE = "Yep, we're getting married! 😊 ";
 
 export default function Loader({
   guestName,

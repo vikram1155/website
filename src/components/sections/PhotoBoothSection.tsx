@@ -5,42 +5,53 @@ import Section from "../Section";
 
 const photoMoments = [
   {
-    period: "2018 · campus",
-    note: "The March Past nobody wanted to attend.",
-    image: null,
+    period: "2018 · SSN did what it does best",
+    note: "Seedling. The March Past both of us never wanted to attend.",
+    image:
+      "https://camo.githubusercontent.com/5e45bc648dba68520ce949a53690af6bcef2880f84a1d46cbb1636649afd6d84/68747470733a2f2f796176757a63656c696b65722e6769746875622e696f2f73616d706c652d696d616765732f696d6167652d313032312e6a7067",
   },
   {
-    period: "2018 · clock tower",
+    period: "2018 · Clock tower",
     note: "Two hours that were supposed to be a quick hello.",
     image: null,
   },
   {
     period: "2019 · Fraaands",
-    note: "The friendship got a name of its own.",
+    note: "Roamed the campus, clocked 10k for no reason",
     image: null,
   },
   {
-    period: "2020–21 · apart, not offline",
-    note: "Nightly calls made the distance feel smaller.",
+    period: "2020 · Covid, and wierd distance",
+    note: "Secret calls made the distance feel smaller.",
     image: null,
   },
   {
-    period: "2022 · grown-up life",
-    note: "Same team, slightly rougher seas.",
+    period: "2021 · Farewell, but temporary",
+    note: "Last day pierced hard, realisations wasn't fun.",
     image: null,
   },
   {
-    period: "2023–24 · date days",
-    note: "Twelve-hour dates still called a quick meet.",
+    period: "2022 · Career, even more distance",
+    note: "Boring days ending with an hourly chat",
     image: null,
   },
   {
-    period: "2025 · family chapters",
-    note: "The future started feeling a little more real.",
+    period: "2023 · Surprises, call and nothing else",
+    note: "Secret half day dates, and a lot of KFC.",
     image: null,
   },
   {
-    period: "2026 · us, here",
+    period: "2024 · Trolls, fights, and more fights",
+    note: "Chennai to Bangalore to Chennai to Bangalore to Chennai to Bangalore ",
+    image: null,
+  },
+  {
+    period: "2025 · Long awaited family chapters",
+    note: "'Family' things going as per plan, yet not as per plan.",
+    image: null,
+  },
+  {
+    period: "2026 · Us, here",
     note: "All those years, leading to this weekend.",
     image: null,
   },
@@ -58,7 +69,11 @@ const slideVariants = {
   }),
 };
 
-export default function PhotoBoothSection() {
+export default function PhotoBoothSection({
+  background,
+}: {
+  background?: string;
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -82,11 +97,17 @@ export default function PhotoBoothSection() {
 
   return (
     <Section
-      id="photobooth"
-      eyebrow="The photo booth"
-      title="Our camera roll, with the retakes left in"
-      intro="A few frames in chronological order, because one of us does care about timelines."
+      id="story"
+      className="photobooth-section"
+      background={background}
+      eyebrow="How we got here"
+      title="Our journey through these years"
+      intro=""
     >
+      <p className="section-intro photobooth-section-intro">
+        We can hear you say - <b>'Ithulam yarra keta ipo' 🙃</b>
+        still we thought we should share our story with you! So here it is 😅
+      </p>
       <div
         className="photobooth-carousel"
         role="region"
@@ -136,6 +157,9 @@ export default function PhotoBoothSection() {
           </AnimatePresence>
         </div>
 
+        <p className="photobooth-caption" aria-live="polite">
+          {activeMoment.period}
+        </p>
         <p className="photobooth-caption" aria-live="polite">
           {activeMoment.note}
         </p>

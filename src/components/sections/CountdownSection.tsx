@@ -1,10 +1,15 @@
 import Section from "../Section";
 import Countdown from "../Countdown";
-export default function CountdownSection() {
+export default function CountdownSection({
+  background,
+}: {
+  background?: string;
+}) {
   return (
     <Section
       className="countdown-section"
-      eyebrow="The clock is ticking"
+      background={background}
+      eyebrow="This timer is running too fast right 👀"
       title="Okay, but how long until this actually happens?"
     >
       <Countdown />

@@ -14,7 +14,7 @@ export const wedding = {
   hero: {
     image: "/images/hero.jpg",
     fallback: "A very important photo is loading here later.",
-    note: "Two days. One wedding. A suspicious amount of planning.",
+    note: "A suspicious amount of planning to make it extra official!",
   },
   venue: {
     name: "Samyughtha Mahal, Madurai",
@@ -24,10 +24,15 @@ export const wedding = {
   events: [
     {
       date: "12 December",
-      label: "Reception & Engagement 💍",
-      time: "4:00 PM onwards",
+      label: "Engagement 💍",
+      time: "4:45 PM onwards",
     },
-    { date: "13 December", label: "Wedding ✨", time: "7:00 AM onwards" },
+    {
+      date: "12 December",
+      label: "Reception 🎉",
+      time: "7:00 PM onwards",
+    },
+    { date: "13 December", label: "Wedding ✨", time: "7:45 AM to 8:45 AM" },
   ],
   countdown: "2026-12-12T18:00:00+05:30",
   story: [
@@ -87,14 +92,16 @@ export const wedding = {
     },
   ],
   photoMissions: [
-    "Get a photo with someone you haven't met in years.",
-    "All the group photos you took",
-    "wedding food and how you enjoyed it",
-    "Take some photos of the couple looking at each other.",
-    "Find Vikram looking confused and staring",
-    "Find Monica laughing out loud",
-    "Take multiple photos with us.",
-    "A cute photo of us in our wedding outfits 😊",
+    "More candid shots of guests genuinely smiling as they watch the couple together",
+    "Capture the wedding feast, the food, the people, the crowd, and all the fun everyone is having",
+    "Get a few shots of the couple looking at each other. Fingers crossed we’re smiling at each other!",
+    "Catch Vikram having a mini existential crisis in the middle of the ceremony",
+    "Capture Monica bursting into laughter at one of Vikram’s jokes (mostly she might be annoyed)",
+    "A photo of us looking at each other like, 'Wait, did we really pull this off?'",
+    "Someone enjoying 4 scoops of ice cream and reaching for the 5th (Vikram, is that you?)",
+    "Capture a wholesome moment between the couple and their parents",
+    "Get a candid shot of the couple laughing together when they think nobody’s watching",
+    "Finally, a cute picture of us in our wedding outfits 😊",
   ],
   randomFacts: [
     "Classic Vikram: no popcorn for Monica, buying the cheapest 60-rupee tickets, and upgrading themselves to the 200-rupee seats 😈",
@@ -102,8 +109,8 @@ export const wedding = {
     "Vikram and Monica have been texting/talking non-stop for 9 years straight. Literally zero days off 👀",
     "We thought ourselves as OK Kanmani Adi and Tara, turns out we are Vadivelu and Kovai sarala irl 💣",
     "We tried the FLAMES calculator, guess what we got for our names? 😁",
-    "Monica gets angry, Vikram consoles her. Vikram gets angry, Vikram consoles her. Perfectly balanced, as all things should be. 😎",
-    "Is Monica fragile? Yes. A flower? Definetely not! More like a.. bomb. An always ticking Time bomb 💣",
+    "Monica gets angry, Vikram consoles her. Vikram gets angry, Vikram consoles her. Ava enna adikka, enna ava adikka.. perfectly balanced, as all things should be. 😎",
+    "Is Monica fragile? Yes. A flower? Definetely not! More like a.. bomb. An always ticking Time bomb 💥",
   ],
   photoSharing: { telegramUrl: "https://t.me/+ByFHLw8W5rQwM2U1" },
   moi: {

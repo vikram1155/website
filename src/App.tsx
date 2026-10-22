@@ -9,13 +9,15 @@ import "./App.css";
 import WeddingPage from "./pages/WeddingPage";
 import PovPage from "./pages/PovPage";
 
+const ADMIN_PATH = "/admin=vm070999";
+
 function GuestInviteRoute() {
   const { pathname } = useLocation();
-  return pathname.toLowerCase().startsWith("/guest=") ? (
-    <WeddingPage />
-  ) : (
-    <Navigate to="/" replace />
-  );
+  if (pathname.toLowerCase() === ADMIN_PATH) {
+    return <WeddingPage isAdmin />;
+  }
+  if (pathname.toLowerCase().startsWith("/guest=")) return <WeddingPage />;
+  return <Navigate to="/" replace />;
 }
 
 export default function App() {

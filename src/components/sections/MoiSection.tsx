@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { QRCodeSVG } from "qrcode.react";
 import Section from "../Section";
 import Modal from "../Modal";
 import { wedding } from "../../config/wedding";
-export default function MoiSection() {
+import qrCodeImage from "../../assets/qr-code.png";
+export default function MoiSection({ background }: { background?: string }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [step, setStep] = useState(0);
   const start = (amount: string) => {
@@ -16,25 +16,24 @@ export default function MoiSection() {
   return (
     <Section
       id="gift-us"
+      background={background}
       eyebrow="Gift Us"
       title="Kalyanam Moi"
-      intro="Website lam pannirkom. Paathu seinga, frens 😁"
+      intro="Website lam pannirkom. Paathu seinga, frends 😁"
     >
       <div className="moi-layout">
         <div className="qr-wrap" style={{ textAlign: "center" }}>
-          <QRCodeSVG
-            value={wedding.moi.qrValue}
-            size={180}
-            bgColor="#fffaf4"
-            fgColor="#201b19"
-            includeMargin
+          <img
+            className="upi-qr-code"
+            src={qrCodeImage}
+            alt="Scan this QR code to pay by UPI"
           />
-          GPAY | UPI
+          UPI QR Code
         </div>
         <div>
           <p>
-            We know you guys are choosing 2000/- and nothing else 🙂 <br></br>
-            Right? Right??
+            We know you guys are choosing 2000/- and nothing else 🙂 Right?
+            Right??
           </p>
           <div className="amount-grid">
             {wedding.moi.amounts.map((amount) => (

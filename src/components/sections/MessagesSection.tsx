@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import Section from "../Section";
 import MessageCard from "../MessageCard";
 import Modal from "../Modal";
@@ -8,14 +8,23 @@ import {
   getGuestMessages,
   isGuestbookConfigured,
   postGuestMessage,
+  deleteGuestMessage,
 } from "../../config/guestbook";
 import type { GuestMessage } from "../../config/guestbook";
-export default function MessagesSection() {
+export default function MessagesSection({
+  isAdmin = false,
+  background,
+}: {
+  isAdmin?: boolean;
+  background?: string;
+}) {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [form, setForm] = useState({ name: "", message: "", anonymous: false });
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState("");
+  const [deleteError, setDeleteError] = useState("");
   const [selectedMessage, setSelectedMessage] = useState<GuestMessage | null>(
     null,
   );
@@ -76,12 +85,33 @@ export default function MessagesSection() {
       setIsSubmitting(false);
     }
   };
+
+  const deleteSelectedMessage = async () => {
+    if (!selectedMessage || isDeleting) return;
+    if (!window.confirm("Delete this guestbook message?")) return;
+
+    setDeleteError("");
+    setIsDeleting(true);
+    try {
+      await deleteGuestMessage(selectedMessage.id);
+      setMessages((current) =>
+        current.filter((item) => item.id !== selectedMessage.id),
+      );
+      setSelectedMessage(null);
+    } catch {
+      setDeleteError("This message could not be deleted. Please try again.");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <Section
-      id="messages"
+      id="write-to-us"
+      background={background}
       eyebrow="Guestbook"
       title="Leave Us Something Valuable!"
-      intro="A wish, a roast, a core memory, terrible advice, or a story about how we all met! Btw, this gets posted, kanda menika post panirathinga frends🙂. This means a lot to us and try not to post anonymously 👀 "
+      intro="A wish, a roast, a core memory, terrible advice, rumours or a story about how we all met! Btw, this gets posted, kanda menika post panirathinga frends 🙂. This means a lot to us and try not to post anonymously 👀 "
     >
       <div className="messages-layout">
         <form className="message-form" onSubmit={post}>
@@ -176,9 +206,20 @@ export default function MessagesSection() {
           <div className="message-modal-content">
             <p className="eyebrow">A note from {selectedMessage.name}</p>
             <blockquote style={{ fontSize: "1.25rem" }}>
-              “{selectedMessage.message}”
+              {selectedMessage.message}
             </blockquote>
-            {/* <strong>{selectedMessage.name}</strong> */}
+            {isAdmin && (
+              <button
+                className="button button-danger"
+                type="button"
+                onClick={deleteSelectedMessage}
+                disabled={isDeleting}
+              >
+                <Trash2 size={16} />
+                {isDeleting ? "Deleting..." : "Delete message"}
+              </button>
+            )}
+            {deleteError && <p role="alert">{deleteError}</p>}
           </div>
         )}
       </Modal>

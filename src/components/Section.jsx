@@ -7,11 +7,13 @@ export default function Section({
   intro,
   children,
   className = "",
+  background,
 }) {
   return (
     <motion.section
       id={id}
       className={`site-section ${className}`.trim()}
+      style={background ? { background } : undefined}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}

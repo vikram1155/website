@@ -1,10 +1,11 @@
 import { Clock3, MapPin } from "lucide-react";
 import Section from "../Section";
 import { wedding } from "../../config/wedding";
-export default function EventDetails() {
+export default function EventDetails({ background }: { background?: string }) {
   return (
     <Section
       id="events"
+      background={background}
       eyebrow="The important bits"
       title="Location & Timing"
       intro=""
@@ -31,7 +32,10 @@ export default function EventDetails() {
           </article>
         ))}
       </div>
-      <p className="section-note">Come hungry. Stay longer than you planned.</p>
+      <p className="section-note">
+        We checked your calendar and you’re free. Save your excuses for work,
+        we'll see you for both days 😌
+      </p>
     </Section>
   );
 }

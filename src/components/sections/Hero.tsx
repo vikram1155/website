@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { wedding } from "../../config/wedding";
+import logo from "../../assets/logo.png";
+
 export default function Hero() {
   return (
     <section id="top" className="hero">
@@ -18,6 +20,19 @@ export default function Hero() {
           <h1>
             {wedding.couple.groom} <span>&</span> {wedding.couple.bride}
           </h1>
+          <div
+            style={{
+              margin: "30px 0",
+              display: "flex",
+              justifySelf: "center",
+              width: "20%",
+            }}
+          >
+            <img
+              src={logo}
+              alt={`${wedding.couple.groom} and ${wedding.couple.bride}`}
+            />
+          </div>
           <p
             className="eyebrow"
             style={{

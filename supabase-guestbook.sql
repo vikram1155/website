@@ -6,7 +6,7 @@ create table if not exists public.guestbook_messages (
 
 alter table public.guestbook_messages enable row level security;
 
-grant select, insert on public.guestbook_messages to anon, authenticated;
+grant select, insert, delete on public.guestbook_messages to anon, authenticated;
 
 create policy "Anyone can read guestbook messages"
   on public.guestbook_messages for select

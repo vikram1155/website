@@ -1,9 +1,14 @@
 import PlaceholderImage from "../PlaceholderImage";
 import Section from "../Section";
-export default function ClosingSection() {
+export default function ClosingSection({
+  background,
+}: {
+  background?: string;
+}) {
   return (
     <Section
       className="closing-section"
+      background={background}
       eyebrow="That’s it."
       title="Closing Note"
     >
@@ -15,9 +20,6 @@ export default function ClosingSection() {
             little extra (at least that's what we think 😂) and gave this whole{" "}
             <i>"let's make a wedding website"</i> thing a shot.
           </p>
-
-          <br></br>
-
           <p>
             We hope you had fun going through it (guessing most of you probably
             scrolled past 🙂), scrolling through our story, looking at our
@@ -26,13 +28,7 @@ export default function ClosingSection() {
             we get to celebrate with the people who have been part of our
             journey in one way or another.
           </p>
-
-          <br></br>
-
           <p>And now, for the actual formal invitation...</p>
-
-          <br></br>
-
           <p>
             <b>We're getting married! 🎉</b>
           </p>
@@ -41,24 +37,15 @@ export default function ClosingSection() {
             We'd like you to join us on <b>Saturday, 12 Dec</b> and{" "}
             <b>Sunday, 13 Dec</b> in Madurai.
           </p>
-
-          <br></br>
-
           <p>
             Think of it as a wedding, a get-together, a reunion, and a pretty
             good excuse to come to Madurai for a <i>"food trip"</i> 😌
           </p>
-
-          <br></br>
-
           <p>
             Come celebrate with us, catch up with people, have fun, and
             hopefully cherish old memories while making some new ones along the
             way.
           </p>
-
-          <br></br>
-
           <p>See you there 🙌</p>
         </div>
         <div style={{ maxWidth: "400px", width: "100%" }}>

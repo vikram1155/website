@@ -2,14 +2,19 @@ import { useState } from "react";
 import Section from "../Section";
 import MissionCard from "../MissionCard";
 import { wedding } from "../../config/wedding";
-export default function MissionsSection() {
+export default function MissionsSection({
+  background,
+}: {
+  background?: string;
+}) {
   const [done, setDone] = useState<number[]>([]);
   return (
     <Section
       id="missions"
+      background={background}
       eyebrow="Guest photo missions"
       title="Your Mission, Should You Choose to Accept It 📸"
-      intro="Alright bros, this is the part where you become our official eyes and ears! We are completely counting on you to capture all the chaotic and beautiful moments we’re bound to miss. Send over every single photo, video, and story - they are 100% going straight into our wedding album!"
+      intro="Alright bros, this is the part where you become our unofficial photographers! We are completely counting on you to capture all the chaotic and beautiful moments we’re bound to miss. Send over every single photo, video, and story - they are 100% going straight into our wedding album!"
     >
       <div className="mission-progress">
         {done.length} / {wedding.photoMissions.length} missions completed
@@ -38,7 +43,7 @@ export default function MissionsSection() {
           target="_blank"
           rel="noreferrer"
         >
-          Upload Photos to the Telegram Group →
+          Upload Photos to our Telegram Group →
         </a>
       </div>
     </Section>

@@ -46,7 +46,11 @@ function getInviteeName(pathname: string, search: string) {
     .join("");
 }
 
-export default function WeddingPage() {
+export default function WeddingPage({
+  isAdmin = false,
+}: {
+  isAdmin?: boolean;
+}) {
   const { pathname, search } = useLocation();
   const inviteeName = getInviteeName(pathname, search);
   const [intro, setIntro] = useState(true);
@@ -83,15 +87,19 @@ export default function WeddingPage() {
           <Header />
           <main>
             <Hero />
-            <EventDetails />
-            <CountdownSection />
-            <StorySection />
-            <PhotoBoothSection />
-            <MessagesSection />
-            <MissionsSection />
-            <RandomUsSection />
-            <MoiSection />
-            <ClosingSection />
+            <CountdownSection background="var(--terracotta)" />
+            <EventDetails background="linear-gradient(135deg, #ead8cb, #f7f0e8)" />
+            {/* <StorySection /> */}
+            <PhotoBoothSection background="var(--paper)" />
+            <RandomUsSection background="linear-gradient(135deg, #ead8cb, #f7f0e8)" />
+
+            <MissionsSection background="var(--paper)" />
+            <MessagesSection
+              isAdmin={isAdmin}
+              background="linear-gradient(135deg, #ead8cb, #f7f0e8)"
+            />
+            <MoiSection background="var(--paper)" />
+            <ClosingSection background="linear-gradient(135deg, #ead8cb, #f7f0e8)" />
             {/* <WorkSection /> */}
           </main>
           <Footer />

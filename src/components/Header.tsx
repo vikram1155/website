@@ -16,7 +16,7 @@ export default function Header() {
     ["#story", "Story"],
     ["#messages", "Messages"],
     ["#missions", "Missions"],
-    ["#random-us", "Random Us"],
+    ["#write-to-us", "Write To Us"],
     ["#gift-us", "Gift Us"],
     ["#contact", "Contact"],
   ];

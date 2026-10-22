@@ -24,7 +24,7 @@ export default function MessageCard({
       initial={{ opacity: 0, y: 15, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
     >
-      <p>“{item.message}”</p>
+      <p>{item.message}</p>
       <footer>
         <strong>{item.name}</strong>
       </footer>
